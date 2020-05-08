@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <link rel="icon" href="./favicon.ico" type="image/x-icon" />
+    <title>Vue</title>
+    <script src="./config.js"></script>
+    <script>
+        // 使用rem只对高度行高宽度背景图  对字体大小超过30px的使用rem 否则使用px
+        //使用的时候直接用实际的宽度/100就是rem的大小 例如实际的是100*100那么就是1rem*1rem
+        // 最大设计稿宽度和设计稿宽的默认设置的是1280的
+      (function(designWidth, maxWidth) {
+        var doc = document,
+          win = window,
+          docEl = doc.documentElement,
+          remStyle = document.createElement("style"),
+          tid;
+
+        function refreshRem() {
+          var width = docEl.getBoundingClientRect().width;
+          maxWidth = maxWidth || 540;
+          width > maxWidth && (width = maxWidth);
+          var rem = (width * 100) / designWidth;
+          remStyle.innerHTML = "html{font-size:" + rem + "px;}";
+        }
+
+        if (docEl.firstElementChild) {
+          docEl.firstElementChild.appendChild(remStyle);
+        } else {
+          var wrap = doc.createElement("div");
+          wrap.appendChild(remStyle);
+          doc.write(wrap.innerHTML);
+          wrap = null;
+        }
+        //要等 wiewport 设置好后才能执行 refreshRem，不然 refreshRem 会执行2次；
+        refreshRem();
+
+        win.addEventListener(
+          "resize",
+          function() {
+            clearTimeout(tid); //防止执行两次
+            tid = setTimeout(refreshRem, 300);
+          },
+          false
+        );
+
+        win.addEventListener(
+          "pageshow",
+          function(e) {
+            if (e.persisted) {
+              // 浏览器后退的时候重新计算
+              clearTimeout(tid);
+              tid = setTimeout(refreshRem, 300);
+            }
+          },
+          false
+        );
+
+        if (doc.readyState === "complete") {
+          doc.body.style.fontSize = "14px";
+        } else {
+          doc.addEventListener(
+            "DOMContentLoaded",
+            function(e) {
+              doc.body.style.fontSize = "14px";
+            },
+            false
+          );
+        }
+      })(1280, 1280);
+    </script>
+  </head>
+  <body>
+    <noscript>
+      <strong
+        >We're sorry but sefere doesn't work properly without JavaScript
+        enabled. Please enable it to continue.</strong
+      >
+    </noscript>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  </body>
+</html>

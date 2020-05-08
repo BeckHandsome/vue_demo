@@ -1,0 +1,44 @@
+/*  修改element样式 */
+@import "./variables.scss"; //引用定义的公共变量
+
+//取消菜单导航的二级菜单默认小标题的间距
+.el-menu-item-group__title {
+    padding: 0;
+}
+.el-menu--collapse {
+    width: 64px !important;
+}
+.el-menu {
+    border-right:none;
+    width: $nav-width;
+    background-color:$nav-background-color;
+
+    .el-menu-item, .el-submenu__title {
+        height: 0.36rem;
+    }
+
+    .el-submenu__title,.el-submenu,.el-menu-item {
+        margin-left: 0.2rem;
+        color:$nav-text-color;
+        line-height: 0.36rem;
+        margin:0.05rem 0;
+        &:hover{
+            background-color:$nav-background-color;
+            color:$nav-text-color;
+        }
+    }
+
+    .el-menu-item.is-active {
+        background-color: $nav-active-background-color;
+        color:#ffffff;
+        border-radius:0.18rem 0 0 0.18rem;
+    }
+}
+
+/*  element布局样式修改 begin   */
+.el-header {
+    padding:0;
+}
+.el-main {
+    padding: 0 0.20rem 0.20rem 0.20rem !important;
+}

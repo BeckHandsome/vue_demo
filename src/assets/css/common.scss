@@ -1,0 +1,16 @@
+// 修改我们自己定义的样式
+
+@import "./variables.scss"; //引用定义的公共变量
+
+.floatLeft {
+    float: left;
+}
+.floatRight {
+    float: right;
+}
+.paddingLeft10 {
+    padding-left: 0.1rem; 
+}
+.paddingRight10 {
+    padding-right: 0.1rem;
+}
