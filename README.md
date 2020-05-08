@@ -1,9 +1,8 @@
-# sfere
+
 ## 前端的基础框架
  
-已经引入组件axios,cloudview.ui,element-ui,jquery,vue,vue-i18n,vue-router,vuex并配置好了可以直接使用
+已经引入组件axios,element-ui,jquery,vue,vue-i18n,vue-router,vuex并配置好了可以直接使用
 
-我们封装的axios，已经在modules/common/services引用好了具体使用请看文档[链接](https://nj.sfere-elec.com:8090/ui/#/components/http)
 
 该框架使用rem计算 具体使用请看public/index.html
 
@@ -14,27 +13,22 @@
 ## Project setup
 ```
 npm install
+yarn install
 ```
 
 ### Compiles and hot-reloads for development
 ```
 npm run serve
+yarn serve 
 ```
 
 ### Compiles and minifies for production
 ```
 npm run build
+yarn build
 ```
 
-### Run your tests
-```
-npm run test
-```
 
-### Lints and fixes files
-```
-npm run lint
-```
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
