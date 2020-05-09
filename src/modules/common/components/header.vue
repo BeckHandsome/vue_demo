@@ -3,6 +3,7 @@
         <!-- 全屏 自行决定是不是用-->
         <!-- <i class="paddingLeft10 iconfont icon-Fullscreen el-dropdown-link" @click="handleFullScreen"></i> -->
         <!-- 切换中英文 -->
+        <i>{{currentTime}}</i>
         <el-dropdown class="paddingLeft10" trigger="click" @command="changeLanguage">
             <span class="el-dropdown-link">
                 {{language}}
@@ -23,6 +24,8 @@ export default {
     data() {
         return {
             language: "中文",
+            currentTime: "",
+            timeInterval: "",
         };
     },
     created() {
@@ -37,6 +40,10 @@ export default {
             this.language = "中文";
             this.$i18n.locale = localStorage.getItem("language");
         }
+
+        this.timeInterval = setInterval(() => {
+            this.getCurrentTime();
+        }, 1000);
     },
     methods: {
         // 切换语言
@@ -76,6 +83,10 @@ export default {
             }
             return isFull;
         },
+        getCurrentTime() {
+            const createTime = new Date();
+            this.currentTime = this.$moment(createTime);
+        }
     },
     mounted() {
         window.onresize = () => {
@@ -85,6 +96,9 @@ export default {
                 // this.isFullscreen = false;
             }
         };
+    },
+    destroyed() {
+        clearInterval(this.timeInterval);
     },
 };
 </script>
